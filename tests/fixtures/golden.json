@@ -1,0 +1,243 @@
+{
+  "schemaVersion": 1,
+  "id": "takalekho.golden",
+  "note": "Single source of truth for accepted/rejected behaviour. Unit tests, the UI example table and the E2E suite all consume this file. `official` is the default style; `colloquial` is the experimental preset.",
+  "accepted": [
+    {
+      "input": "0",
+      "official": "শূন্য টাকা মাত্র",
+      "colloquial": "শূন্য টাকা"
+    },
+    {
+      "input": "7",
+      "official": "সাত টাকা মাত্র",
+      "colloquial": "সাত টাকা"
+    },
+    {
+      "input": "12.5",
+      "official": "বারো টাকা পঞ্চাশ পয়সা মাত্র",
+      "colloquial": "বারো টাকা পঞ্চাশ পয়সা"
+    },
+    {
+      "input": "12.50",
+      "official": "বারো টাকা পঞ্চাশ পয়সা মাত্র",
+      "colloquial": "বারো টাকা পঞ্চাশ পয়সা"
+    },
+    {
+      "input": "12.05",
+      "official": "বারো টাকা পাঁচ পয়সা মাত্র",
+      "colloquial": "বারো টাকা পাঁচ পয়সা"
+    },
+    {
+      "input": "12.00",
+      "official": "বারো টাকা মাত্র",
+      "colloquial": "বারো টাকা"
+    },
+    {
+      "input": "100",
+      "official": "একশত টাকা মাত্র",
+      "colloquial": "একশ টাকা"
+    },
+    {
+      "input": "999",
+      "official": "নয়শত নিরানব্বই টাকা মাত্র",
+      "colloquial": "নয়শ নিরানব্বই টাকা"
+    },
+    {
+      "input": "1000",
+      "official": "এক হাজার টাকা মাত্র",
+      "colloquial": "এক হাজার টাকা"
+    },
+    {
+      "input": "12450",
+      "official": "বারো হাজার চারশত পঞ্চাশ টাকা মাত্র",
+      "colloquial": "বারো হাজার চারশ পঞ্চাশ টাকা"
+    },
+    {
+      "input": "1,00,000",
+      "official": "এক লাখ টাকা মাত্র",
+      "colloquial": "এক লাখ টাকা"
+    },
+    {
+      "input": "100000",
+      "official": "এক লাখ টাকা মাত্র",
+      "colloquial": "এক লাখ টাকা"
+    },
+    {
+      "input": "1,23,45,678",
+      "official": "এক কোটি তেইশ লাখ পঁয়তাল্লিশ হাজার ছয়শত আটাত্তর টাকা মাত্র",
+      "colloquial": "এক কোটি তেইশ লাখ পঁয়তাল্লিশ হাজার ছয়শ আটাত্তর টাকা"
+    },
+    {
+      "input": "৯,৯৯,৯৯,৯৯৯.৯৯",
+      "official": "নয় কোটি নিরানব্বই লাখ নিরানব্বই হাজার নয়শত নিরানব্বই টাকা নিরানব্বই পয়সা মাত্র",
+      "colloquial": "নয় কোটি নিরানব্বই লাখ নিরানব্বই হাজার নয়শ নিরানব্বই টাকা নিরানব্বই পয়সা"
+    },
+    {
+      "input": "৳ ১২,৪৫০.৫০",
+      "official": "বারো হাজার চারশত পঞ্চাশ টাকা পঞ্চাশ পয়সা মাত্র",
+      "colloquial": "বারো হাজার চারশ পঞ্চাশ টাকা পঞ্চাশ পয়সা"
+    },
+    {
+      "input": "0.01",
+      "official": "শূন্য টাকা এক পয়সা মাত্র",
+      "colloquial": "শূন্য টাকা এক পয়সা"
+    },
+    {
+      "input": "0.99",
+      "official": "শূন্য টাকা নিরানব্বই পয়সা মাত্র",
+      "colloquial": "শূন্য টাকা নিরানব্বই পয়সা"
+    },
+    {
+      "input": "1000000",
+      "official": "দশ লাখ টাকা মাত্র",
+      "colloquial": "দশ লাখ টাকা"
+    },
+    {
+      "input": "10000000",
+      "official": "এক কোটি টাকা মাত্র",
+      "colloquial": "এক কোটি টাকা"
+    },
+    {
+      "input": "12345678",
+      "official": "এক কোটি তেইশ লাখ পঁয়তাল্লিশ হাজার ছয়শত আটাত্তর টাকা মাত্র",
+      "colloquial": "এক কোটি তেইশ লাখ পঁয়তাল্লিশ হাজার ছয়শ আটাত্তর টাকা"
+    },
+    {
+      "input": "1100",
+      "official": "এক হাজার একশত টাকা মাত্র",
+      "colloquial": "এক হাজার একশ টাকা"
+    },
+    {
+      "input": "105",
+      "official": "একশত পাঁচ টাকা মাত্র",
+      "colloquial": "একশ পাঁচ টাকা"
+    },
+    {
+      "input": "243",
+      "official": "দুইশত তেতাল্লিশ টাকা মাত্র",
+      "colloquial": "দুইশ তেতাল্লিশ টাকা"
+    },
+    {
+      "input": "১",
+      "official": "এক টাকা মাত্র",
+      "colloquial": "এক টাকা"
+    },
+    {
+      "input": "৯৯৯৯৯৯৯৯৯",
+      "official": "নিরানব্বই কোটি নিরানব্বই লাখ নিরানব্বই হাজার নয়শত নিরানব্বই টাকা মাত্র",
+      "colloquial": "নিরানব্বই কোটি নিরানব্বই লাখ নিরানব্বই হাজার নয়শ নিরানব্বই টাকা"
+    },
+    {
+      "input": "1,24,50,000",
+      "official": "এক কোটি চব্বিশ লাখ পঞ্চাশ হাজার টাকা মাত্র",
+      "colloquial": "এক কোটি চব্বিশ লাখ পঞ্চাশ হাজার টাকা"
+    }
+  ],
+  "rejected": [
+    {
+      "input": "",
+      "code": "EMPTY_INPUT"
+    },
+    {
+      "input": "   ",
+      "code": "EMPTY_INPUT"
+    },
+    {
+      "input": "12.005",
+      "code": "DECIMAL_DIGITS"
+    },
+    {
+      "input": "12.",
+      "code": "DECIMAL_POINT_NO_DIGITS"
+    },
+    {
+      "input": ".50",
+      "code": "DECIMAL_POINT_MISSING_ZERO"
+    },
+    {
+      "input": "1.2.3",
+      "code": "DECIMAL_POINT_REPEATED"
+    },
+    {
+      "input": "007",
+      "code": "LEADING_ZERO"
+    },
+    {
+      "input": "০১২",
+      "code": "LEADING_ZERO"
+    },
+    {
+      "input": "00",
+      "code": "LEADING_ZERO"
+    },
+    {
+      "input": "100,000",
+      "code": "GROUPING_UNSUPPORTED"
+    },
+    {
+      "input": "1,0000",
+      "code": "GROUP_INVALID"
+    },
+    {
+      "input": "1,,000",
+      "code": "GROUP_INVALID"
+    },
+    {
+      "input": "-12",
+      "code": "NEGATIVE_NOT_SUPPORTED"
+    },
+    {
+      "input": "+12",
+      "code": "SIGN_NOT_SUPPORTED"
+    },
+    {
+      "input": "1e3",
+      "code": "EXPONENT_NOT_SUPPORTED"
+    },
+    {
+      "input": "১২3",
+      "code": "MIXED_DIGIT_SCRIPT"
+    },
+    {
+      "input": "12 450",
+      "code": "WHITESPACE_INSIDE"
+    },
+    {
+      "input": "১২ টাকা",
+      "code": "UNIT_WORD_IN_INPUT"
+    },
+    {
+      "input": "12 taka",
+      "code": "UNIT_WORD_IN_INPUT"
+    },
+    {
+      "input": "abc",
+      "code": "INVALID_CHARACTER"
+    },
+    {
+      "input": "12,34",
+      "code": "GROUP_INVALID"
+    },
+    {
+      "input": "12৳",
+      "code": "CURRENCY_SYMBOL_POSITION"
+    },
+    {
+      "input": "৳৳12",
+      "code": "CURRENCY_SYMBOL_POSITION"
+    },
+    {
+      "input": "৯৯৯৯৯৯৯৯৯৯",
+      "code": "OUT_OF_RANGE"
+    },
+    {
+      "input": "1000000000",
+      "code": "OUT_OF_RANGE"
+    },
+    {
+      "input": "৯৯,৯৯,৯৯,৯৯৯.৯৯৯",
+      "code": "DECIMAL_DIGITS"
+    }
+  ]
+}

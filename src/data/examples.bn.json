@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "id": "takalekho.examples.bn",
+  "version": "0.1.0",
+  "note": "Rendered in the UI by running the real engine. The same inputs appear in tests/fixtures/golden.json.",
+  "accepted": [
+    {
+      "input": "0",
+      "note": "শূন্য টাকা"
+    },
+    {
+      "input": "7",
+      "note": "এক অঙ্ক"
+    },
+    {
+      "input": "12.5",
+      "note": "পঞ্চাশ পয়সা"
+    },
+    {
+      "input": "12.05",
+      "note": "পাঁচ পয়সা — শূন্য নিয়ে লেখা"
+    },
+    {
+      "input": "12.00",
+      "note": "পয়সা শূন্য হলে বাদ যায়"
+    },
+    {
+      "input": "100",
+      "note": "একশত"
+    },
+    {
+      "input": "999",
+      "note": "নয়শত নিরানব্বই"
+    },
+    {
+      "input": "1000",
+      "note": "এক হাজার"
+    },
+    {
+      "input": "12450",
+      "note": "হাজার + শতক + একক"
+    },
+    {
+      "input": "1,00,000",
+      "note": "এক লাখ — দেশীয় কমা"
+    },
+    {
+      "input": "1,23,45,678",
+      "note": "কোটি + লাখ + হাজার + শতক + একক"
+    },
+    {
+      "input": "৯,৯৯,৯৯,৯৯৯.৯৯",
+      "note": "ঘোষিত সর্বোচ্চ সীমা"
+    },
+    {
+      "input": "1,24,50,000",
+      "note": "সেলামি কোটির কাছে লখা"
+    }
+  ],
+  "rejected": [
+    {
+      "input": "12.005",
+      "code": "DECIMAL_DIGITS",
+      "why": "দশমিকের পরে দুই ঘরের বেশি"
+    },
+    {
+      "input": "12.",
+      "code": "DECIMAL_POINT_NO_DIGITS",
+      "why": "দশমিকের পরে অঙ্ক নেই"
+    },
+    {
+      "input": ".50",
+      "code": "DECIMAL_POINT_MISSING_ZERO",
+      "why": "শূন্য দিয়ে শুরু করা হয়নি"
+    },
+    {
+      "input": "007",
+      "code": "LEADING_ZERO",
+      "why": "শূন্য ছাড়া অন্য সংখ্যার আগে ০"
+    },
+    {
+      "input": "100,000",
+      "code": "GROUPING_UNSUPPORTED",
+      "why": "ইংরেজি রীতির কমা; দেশীয় রীতিতে ১,০০,০০০"
+    },
+    {
+      "input": "-12",
+      "code": "NEGATIVE_NOT_SUPPORTED",
+      "why": "ঋণাত্মক পরিমাণ"
+    },
+    {
+      "input": "+12",
+      "code": "SIGN_NOT_SUPPORTED",
+      "why": "যোগ চিহ্ন"
+    },
+    {
+      "input": "1e3",
+      "code": "EXPONENT_NOT_SUPPORTED",
+      "why": "বৈজ্ঞানিক সংখ্যা"
+    },
+    {
+      "input": "১২3",
+      "code": "MIXED_DIGIT_SCRIPT",
+      "why": "একই ইনপুটে দুই লিপির অঙ্ক"
+    },
+    {
+      "input": "12 450",
+      "code": "WHITESPACE_INSIDE",
+      "why": "সংখ্যার মাঝে ফাঁকা"
+    },
+    {
+      "input": "১২ টাকা",
+      "code": "UNIT_WORD_IN_INPUT",
+      "why": "পরিমাণের সঙ্গে ‘টাকা’ লিখবেন না"
+    },
+    {
+      "input": "৯৯,৯৯,৯৯,৯৯৯.৯৯৯",
+      "code": "DECIMAL_DIGITS",
+      "why": "তিন ঘর দশমিক"
+    },
+    {
+      "input": "৯৯৯৯৯৯৯৯৯৯",
+      "code": "OUT_OF_RANGE",
+      "why": "অনুমোদিত সীমার বাইরে (১০ অংক)"
+    }
+  ]
+}

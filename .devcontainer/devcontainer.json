@@ -1,0 +1,15 @@
+{
+  "name": "টাকালেখো — Offline Web Tool",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
+  "forwardPorts": [5173, 4173],
+  "portsAttributes": {
+    "5173": { "label": "Development app", "onAutoForward": "openBrowser" },
+    "4173": { "label": "Production preview" }
+  },
+  "postCreateCommand": "npm ci",
+  "customizations": {
+    "vscode": {
+      "extensions": ["dbaeumer.vscode-eslint", "esbenp.prettier-vscode"]
+    }
+  }
+}

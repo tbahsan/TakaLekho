@@ -1,0 +1,469 @@
+/*
+ * টাকালেখো — stylesheet.
+ * No CDN, no remote font, no CSS framework: everything here ships with the app
+ * and is cached by the service worker. Colour is never the only signal, and
+ * reduce-motion is respected.
+ */
+
+:root {
+  --ink: #12211a;
+  --ink-muted: #4b5a52;
+  --paper: #ffffff;
+  --paper-soft: #f4f7f5;
+  --line: #d3ddd7;
+  --brand: #14532d;
+  --brand-soft: #e6f2ea;
+  --danger: #8a1c1c;
+  --danger-soft: #fdeceb;
+  --warn: #7a4a00;
+  --warn-soft: #fdf3e0;
+  --focus: #0b6bbf;
+  --radius: 12px;
+  --shadow: 0 1px 2px rgb(18 33 26 / 8%), 0 8px 24px rgb(18 33 26 / 6%);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e8efe9;
+    --ink-muted: #a9b8af;
+    --paper: #101a15;
+    --paper-soft: #16231c;
+    --line: #2c3c33;
+    --brand: #8fd3a8;
+    --brand-soft: #16301f;
+    --danger: #ffb4ab;
+    --danger-soft: #3a1a18;
+    --warn: #f0c674;
+    --warn-soft: #33280f;
+    --focus: #7cc0ff;
+    --shadow: none;
+    color-scheme: dark;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper-soft);
+  color: var(--ink);
+  font-family: 'Noto Sans Bengali', 'Hind Siliguri', 'SolaimanLipi', 'Nikosh', 'Shonar Bangla',
+    system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  font-variant-numeric: tabular-nums;
+}
+
+.wrap {
+  width: min(56rem, 100% - 2rem);
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--brand);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+.site-header {
+  background: var(--brand);
+  color: #fff;
+  padding: 1.5rem 0 2rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .site-header {
+    background: #0e1c14;
+  }
+}
+
+.brand {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-size: 1.125rem;
+}
+
+.brand .version {
+  font-weight: 400;
+  opacity: 0.85;
+  font-size: 0.875rem;
+}
+
+.site-header h1 {
+  margin: 0.35rem 0 0.25rem;
+  font-size: clamp(1.5rem, 4vw, 2.1rem);
+  line-height: 1.35;
+}
+
+.lede {
+  margin: 0;
+  max-width: 46rem;
+  opacity: 0.95;
+}
+
+.app-status:empty {
+  display: none;
+}
+
+.app-status {
+  margin: 0.75rem 0 0;
+  background: rgb(255 255 255 / 14%);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9375rem;
+}
+
+.app-actions {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.app-actions .pwa-note {
+  flex: 1 1 18rem;
+  font-size: 0.9375rem;
+}
+
+main {
+  padding: 1.5rem 0 3rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+}
+
+.card h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+}
+
+.field-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+input[type='text'] {
+  width: 100%;
+  font: inherit;
+  font-size: 1.5rem;
+  padding: 0.6rem 0.75rem;
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+input[type='text']:focus-visible,
+button:focus-visible,
+input[type='checkbox']:focus-visible,
+input[type='radio']:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+input[type='text'][aria-invalid='true'] {
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
+
+.help {
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+  margin: 0.5rem 0 0;
+}
+
+.error {
+  margin: 0.5rem 0 0;
+  padding: 0.6rem 0.75rem;
+  border-radius: var(--radius);
+  background: var(--danger-soft);
+  border: 1px solid var(--danger);
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.error-hint {
+  display: block;
+  font-weight: 400;
+  margin-top: 0.15rem;
+}
+
+.styles {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin: 1rem 0 0;
+  padding: 0.75rem 1rem 1rem;
+}
+
+.styles legend {
+  font-weight: 600;
+  padding-inline: 0.35rem;
+}
+
+.radio-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  padding: 0.35rem 0;
+}
+
+.radio-row input {
+  margin-top: 0.45rem;
+  inline-size: 1.1rem;
+  block-size: 1.1rem;
+}
+
+.radio-help {
+  display: block;
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.05rem 0.45rem;
+  border-radius: 999px;
+  background: var(--brand-soft);
+  color: var(--brand);
+  vertical-align: 0.1em;
+}
+
+.tag-warn {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.words {
+  display: block;
+  font-size: 1.5rem;
+  line-height: 1.6;
+  font-weight: 600;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius);
+  background: var(--brand-soft);
+  border: 1px solid var(--brand);
+  color: var(--ink);
+  word-break: break-word;
+  user-select: text;
+}
+
+.meta {
+  display: grid;
+  gap: 0.5rem 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  margin: 1rem 0 0;
+}
+
+.meta dt {
+  color: var(--ink-muted);
+  font-size: 0.875rem;
+}
+
+.meta dd {
+  margin: 0.1rem 0 0;
+  font-weight: 600;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+
+button {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius);
+  border: 2px solid var(--brand);
+  background: var(--brand);
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  button {
+    color: #08130c;
+  }
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.status,
+.empty {
+  color: var(--ink-muted);
+  margin: 0.75rem 0 0;
+  min-height: 1.5rem;
+}
+
+.status:empty {
+  min-height: 0;
+}
+
+.checkbox-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+}
+
+.checkbox-row input {
+  margin-top: 0.35rem;
+  inline-size: 1.15rem;
+  block-size: 1.15rem;
+}
+
+.history {
+  list-style: none;
+  margin: 0.85rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.history-item {
+  width: 100%;
+  text-align: start;
+  background: var(--paper-soft);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  font-weight: 400;
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.history-amount {
+  font-weight: 700;
+}
+
+.history-words {
+  font-size: 0.9375rem;
+  color: var(--ink-muted);
+}
+
+.prose details {
+  border-top: 1px solid var(--line);
+  padding: 0.6rem 0;
+}
+
+.prose details:first-of-type {
+  border-top: 0;
+}
+
+.prose summary {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9375rem;
+}
+
+.prose caption {
+  text-align: start;
+  color: var(--ink-muted);
+  font-size: 0.875rem;
+  padding: 0.35rem 0;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--line);
+  padding: 0.45rem 0.55rem;
+  text-align: start;
+  vertical-align: top;
+}
+
+.prose thead th {
+  background: var(--paper-soft);
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+.prose code {
+  background: var(--paper-soft);
+  padding: 0.05rem 0.3rem;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.site-footer {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  padding: 1.25rem 0;
+  color: var(--ink-muted);
+  font-size: 0.9375rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 30rem) {
+  input[type='text'],
+  .words {
+    font-size: 1.25rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

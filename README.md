@@ -14,7 +14,8 @@
 
 [বাংলা](#-বাংলা) · [English](#-english) · [GitHub Pages](#-github-pages-এ-প্রকাশ--publish-to-github-pages) · [Docs](#-ডকুমেন্টেশন--documentation)
 
-**লাইভ অ্যাপ / Live app:** `https://<your-username>.github.io/takalekho/` ← *প্রকাশের পরে নিজের username বসান / replace after publishing*
+**লাইভ অ্যাপ / Live app:** **[tbahsan.github.io/TakaLekho](https://tbahsan.github.io/TakaLekho/)**
+*Repository: [github.com/tbahsan/TakaLekho](https://github.com/tbahsan/TakaLekho) — Pages চালু করার পরে লাইভ হবে / goes live once Pages is enabled.*
 
 </div>
 

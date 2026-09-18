@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>টাকালেখো — টাকার পরিমাণ বাংলা কথায়</title>
+    <meta
+      name="description"
+      content="টাকার অঙ্ককে দেশীয় সংখ্যা-রীতিতে (কোটি–লাখ–হাজার) বাংলা কথায় লেখে। ইনপুট আপনার ডিভাইসেই থাকে; প্রথমবার লোড হওয়ার পরে ইন্টারনেট ছাড়াও কাজ করে।"
+    />
+    <meta name="theme-color" content="#14532d" />
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <link rel="manifest" href="manifest.webmanifest" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">মূল অংশে যান</a>
+
+    <header class="site-header">
+      <div class="wrap">
+        <p class="brand">
+          টাকালেখো <span class="version" id="app-version"></span>
+        </p>
+        <h1>টাকার পরিমাণ, বাংলা কথায়</h1>
+        <p class="lede">
+          অঙ্ক লিখলে দেশীয় সংখ্যা-রীতিতে (কোটি–লাখ–হাজার) বাংলা কথায় পাবেন। আপনার লেখা কোনো
+          সার্ভারে যায় না — সব হিসাব এই ব্রাউজারে হয়।
+        </p>
+        <p class="app-status" id="app-status" role="status" aria-live="polite"></p>
+        <div class="app-actions" id="pwa-actions" hidden></div>
+      </div>
+    </header>
+
+    <main id="main" class="wrap">
+      <section class="card" aria-labelledby="input-heading">
+        <h2 id="input-heading">পরিমাণ</h2>
+
+        <label class="field-label" for="amount">টাকার পরিমাণ</label>
+        <input
+          id="amount"
+          name="amount"
+          type="text"
+          inputmode="decimal"
+          autocomplete="off"
+          spellcheck="false"
+          maxlength="64"
+          placeholder="১২,৪৫০.৫০"
+          aria-describedby="amount-help"
+        />
+        <p class="help" id="amount-help">
+          বাংলা (১২৩) অথবা ইংরেজি (123) অঙ্ক — একই ইনপুটে দুটো নয়। সর্বোচ্চ ৯,৯৯,৯৯,৯৯৯.৯৯।
+          দশমিকের পরে সর্বোচ্চ ২ ঘর। কমা দিলে দেশীয় রীতিতে (১২,৪৫০ / ১,০০,০০০)। শুরুতে একবার
+          ৳ লেখা যায়।
+        </p>
+        <p class="error" id="amount-error" role="alert" hidden data-testid="amount-error"></p>
+
+        <fieldset class="styles">
+          <legend>লেখার রীতি</legend>
+          <div class="radio-row">
+            <input type="radio" name="style" id="style-official" value="official" checked />
+            <label for="style-official">
+              দাপ্তরিক <span class="tag">ডিফল্ট</span>
+              <span class="radio-help">একশত, দুইশত … শেষে “মাত্র”</span>
+            </label>
+          </div>
+          <div class="radio-row">
+            <input type="radio" name="style" id="style-colloquial" value="colloquial" />
+            <label for="style-colloquial">
+              কথ্য ও সংক্ষিপ্ত <span class="tag tag-warn">পরীক্ষামূলক</span>
+              <span class="radio-help">একশ, দুইশ … “মাত্র” ছাড়া</span>
+            </label>
+          </div>
+        </fieldset>
+      </section>
+
+      <section class="card" aria-labelledby="result-heading">
+        <h2 id="result-heading">ফলাফল</h2>
+
+        <p class="empty" id="result-empty" data-testid="result-empty">পরিমাণ লিখলে এখানে কথায় দেখা যাবে।</p>
+
+        <div id="result-body" hidden data-testid="result-body">
+          <output class="words" id="words" for="amount" data-testid="words"></output>
+          <dl class="meta">
+            <div>
+              <dt>স্বাভাবিক রূপ</dt>
+              <dd id="normalized-bengali"></dd>
+            </div>
+            <div>
+              <dt>ইংরেজি অঙ্কে</dt>
+              <dd id="normalized-latin"></dd>
+            </div>
+            <div>
+              <dt>রীতি</dt>
+              <dd id="style-label"></dd>
+            </div>
+          </dl>
+          <p class="help" id="grouping-hint" hidden></p>
+          <div class="actions">
+            <button type="button" id="copy-button">কপি করুন</button>
+            <button type="button" id="download-button" class="secondary">TXT ডাউনলোড</button>
+          </div>
+          <p class="status" id="action-status" role="status" aria-live="polite"></p>
+        </div>
+
+        <p class="empty" id="result-invalid" hidden data-testid="result-invalid">
+          ইনপুটটি গ্রহণ করা হয়নি, তাই পুরোনো ফলাফল দেখানো হচ্ছে না। উপরের ত্রুটি বার্তা দেখুন।
+        </p>
+
+        <p class="sr-only" id="live-region" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="card" aria-labelledby="history-heading">
+        <h2 id="history-heading">সাম্প্রতিক হিসাব (ঐচ্ছিক)</h2>
+
+        <div class="checkbox-row">
+          <input
+            type="checkbox"
+            id="persist-toggle"
+            name="persist"
+            aria-describedby="persist-help"
+          />
+          <label for="persist-toggle">এই ব্রাউজারে সেটিংস ও সাম্প্রতিক হিসাব সংরক্ষণ করুন</label>
+        </div>
+        <p class="help" id="persist-help">
+          চালু না করলে কিছুই সংরক্ষিত হয় না — পেজ বন্ধ করলেই মুছে যায়। ভাগ করা কম্পিউটারে চালু না
+          রাখাই ভালো। সংরক্ষিত তথ্য কেবল এই ব্রাউজারে থাকে, কোথাও পাঠানো হয় না।
+        </p>
+        <p class="status" id="storage-status" role="status" aria-live="polite"></p>
+
+        <ul class="history" id="history-list"></ul>
+        <p class="empty" id="history-empty">এখনো কিছু সংরক্ষিত হয়নি।</p>
+
+        <div class="actions">
+          <button type="button" id="clear-button" class="secondary">সংরক্ষিত সব মুছুন</button>
+        </div>
+      </section>
+
+      <section class="card prose" aria-labelledby="help-heading">
+        <h2 id="help-heading">নিয়ম, সীমা ও উদাহরণ</h2>
+
+        <details open>
+          <summary>উদাহরণ</summary>
+          <div class="table-scroll">
+            <table>
+              <caption>
+                টেবিলের ফলাফল চালু ইঞ্জিন থেকেই তৈরি — হাতে লেখা নয়।
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">ইনপুট</th>
+                  <th scope="col">দাপ্তরিক (ডিফল্ট)</th>
+                  <th scope="col">কথ্য (পরীক্ষামূলক)</th>
+                  <th scope="col">নোট</th>
+                </tr>
+              </thead>
+              <tbody id="examples-body"></tbody>
+            </table>
+          </div>
+        </details>
+
+        <details>
+          <summary>কোন ইনপুটগুলো গ্রহণ করা হয় না</summary>
+          <div class="table-scroll">
+            <table>
+              <caption>
+                প্রতিটি উদাহরণ ইঞ্জিনের ত্রুটি-কোডের সঙ্গে মিলিয়ে পরীক্ষা করা হয়।
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">ইনপুট</th>
+                  <th scope="col">কারণ</th>
+                  <th scope="col">ব্যাখ্যা</th>
+                </tr>
+              </thead>
+              <tbody id="rejected-body"></tbody>
+            </table>
+          </div>
+        </details>
+
+        <details>
+          <summary>কথায় লেখার নিয়ম</summary>
+          <ul>
+            <li>দেশীয় রীতি: কোটি → লাখ → হাজার → শতক → একক, যেমন ১,২৩,৪৫,৬৭৮।</li>
+            <li>শতক: একশত, দুইশত, তিনশত … নয়শত (কথ্য রীতিতে: একশ, দুইশ …)।</li>
+            <li>কোটি/লাখ/হাজার লেখা হয় পূর্ণ শব্দে; সংখ্যার মাঝখানে “ও” বসে না।</li>
+            <li>পয়সা শূন্য হলে পয়সার অংশ বাদ যায়; টাকা শূন্য হলেও “শূন্য টাকা” থাকে।</li>
+            <li>বাক্যের শেষে একবারই “মাত্র” (কথ্য রীতিতে থাকে না)।</li>
+            <li>ভগ্নাংশ কখনো গোল করা হয় না — ১২.৫০৫ গ্রহণযোগ্য নয়, কারণ তাতে পয়সা বদলে যেত।</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>গোপনীয়তা</summary>
+          <p>
+            সব রূপান্তর আপনার ব্রাউজারেই হয়; ইনপুট কোনো সার্ভারে পাঠানো হয় না, কোনো বিশ্লেষণ
+            (analytics) নেই, কোনো CDN বা রিমোট ফন্ট নেই। ডিফল্টভাবে কিছুই সংরক্ষিত হয় না —
+            উপরের ঐচ্ছিক চেকবক্স চালু করলে কেবল এই ব্রাউজারের storage-এ লেখা হয়, যা আপনি যেকোনো
+            সময় “সংরক্ষিত সব মুছুন” দিয়ে মুছতে পারেন। ব্রাউজারের storage মাঝেমধ্যে নিজে থেকেই
+            মুছে যেতে পারে, তাই গুরুত্বপূর্ণ হিসাব আলাদা করে রাখুন। সাইটটি GitHub Pages-এ হোস্ট করা,
+            তাই হোস্টিং-প্রদানকারী সাধারণ ওয়েব-সার্ভারের মতো request log রাখতে পারে — এই অ্যাপ
+            তা বন্ধ করতে পারে না। “সম্পূর্ণ গোপনীয়তার নিশ্চয়তা” আমরা দাবি করি না।
+          </p>
+        </details>
+
+        <details>
+          <summary>সীমাবদ্ধতা ও পর্যালোচনার অবস্থা</summary>
+          <ul>
+            <li>
+              শব্দের তালিকা (০–৯৯) এই repository-র ভেতরেই লেখা এবং স্বয়ংক্রিয় পরীক্ষায়
+              যাচাই করা — কিন্তু <strong>স্বাধীন বাংলা ভাষা-পর্যালোচনা এখনো বাকি</strong>।
+              সেই অনুমোদন ছাড়া এটি v0.1.0 tag পাবে না (<code>docs/EVALUATION.md</code>)।
+            </li>
+            <li>শুধু এই ঘোষিত পরিসর: ০ থেকে ৯,৯৯,৯৯,৯৯৯.৯৯। আন্তর্জাতিক (মিলিয়ন/বিলিয়ন) রীতি এখনো নেই।</li>
+            <li>“কথ্য ও সংক্ষিপ্ত” রীতিতে শতক ও “মাত্র” বাদ যায়; এটি পরীক্ষামূলক এবং ডিফল্ট নয়।</li>
+            <li>এটি ব্যাংক/আইনগত দলিলের জন্য অনুমোদিত রূপান্তর নয় — গুরুত্বপূর্ণ দলিলে নিজে মিলিয়ে নিন।</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>লাইসেন্স ও কারিগরি তথ্য</summary>
+          <ul>
+            <li>কোড: MIT। ফন্ট: Noto Sans Bengali (SIL Open Font License 1.1) — <code>THIRD_PARTY_NOTICES.md</code>।</li>
+            <li>ইঞ্জিন সংস্করণ: <span id="engine-version"></span> · শব্দ-তালিকা সংস্করণ: <span id="table-version"></span> · অবস্থা: <span id="table-review"></span></li>
+            <li>সমস্যা বা ভুল বানামি দেখলে GitHub issue খুলুন — সংবেদনশীল বা আসল আর্থিক তথ্য লেখবেন না।</li>
+          </ul>
+        </details>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>
+          টাকালেখো — ব্রাউজার-ভিত্তিক, অফলাইন-সক্ষম, কোনো ব্যাকএন্ড বা ট্র্যাকিং ছাড়া। GitHub
+          Pages-এ হোস্ট করা Static সাইট।
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
