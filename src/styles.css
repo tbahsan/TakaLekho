@@ -435,9 +435,32 @@ button:disabled {
 .site-footer {
   background: var(--paper);
   border-top: 1px solid var(--line);
-  padding: 1.25rem 0;
+  padding: 1.5rem 0;
   color: var(--ink-muted);
   font-size: 0.9375rem;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer .footer-credit {
+  margin-top: 0.45rem;
+  font-size: 0.875rem;
+}
+
+.site-footer a {
+  color: var(--brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.site-footer a:hover,
+.site-footer a:focus-visible {
+  color: var(--brand-dark);
 }
 
 .sr-only {
